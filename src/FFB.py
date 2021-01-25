@@ -5,11 +5,13 @@ import logging
 
 FreeFolk_Voice_ID = int(os.environ['VOICE_ROLE_ID'])
 
+
 def set_up_logging():
     logging.basicConfig(level=os.getenv("LOG_LEVEL", "DEBUG").upper())
     log = logging.getLogger("FolkBot")
 
     return log
+
 
 class MyClient(discord.Client):
     def __init__(self, *args, **kwargs):
@@ -21,17 +23,18 @@ class MyClient(discord.Client):
                      f"State Before: {before} \n "
                      f"State After:{after}")
 
-        #when someone joins
+        # when someone joins
         if not before.channel and after.channel:
             role = get(member.guild.roles, id=FreeFolk_Voice_ID)
             LOGGER.info(f"User:{member} joined voice channel: {after.channel} giving Role")
             await member.add_roles(role)
 
-        #when someone leaves
+        # when someone leaves
         if before.channel and not after.channel:
             role = get(member.guild.roles, id=FreeFolk_Voice_ID)
             LOGGER.info(f"User:{member} left voice channel: {before.channel} removing Role")
             await member.remove_roles(role)
+
 
 intents = discord.Intents.default()
 intents.voice_states = True
