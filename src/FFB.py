@@ -30,7 +30,7 @@ class MyClient(discord.Client):
         #when someone leaves
         if before.channel and not after.channel:
             role = get(member.guild.roles, id=FreeFolk_Voice_ID)
-            LOGGER.info(f"User:{member} left voice channel: {after.channel} removing Role")
+            LOGGER.info(f"User:{member} left voice channel: {before.channel} removing Role")
             await member.remove_roles(role)
 
 intents = discord.Intents.default()
