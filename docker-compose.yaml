@@ -7,3 +7,4 @@ services:
     environment:
       BOT_TOKEN: ${BOT_TOKEN}
       VOICE_ROLE_ID: ${VOICE_ROLE_ID}
+      LOG_LEVEL: ${LOG_LEVEL}
