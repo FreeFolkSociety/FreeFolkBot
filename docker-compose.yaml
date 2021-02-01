@@ -8,3 +8,5 @@ services:
       BOT_TOKEN: ${BOT_TOKEN}
       VOICE_ROLE_ID: ${VOICE_ROLE_ID}
       LOG_LEVEL: ${LOG_LEVEL}
+    volumes:
+      - "./channel_to_role_mapping.yaml:/code/channel_to_role_mapping.yaml:ro"
