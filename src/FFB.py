@@ -33,8 +33,17 @@ class MyClient(discord.Client):
 
         # when someone changes channel
         if not before.channel == after.channel:
+            rights_update = True
+            if before.channel and after.channel:
+                LOGGER.debug("both channels defined")
+                if before.channel.category == after.channel.category:
+                    rights_update = False
+                    LOGGER.info(f"User:{member} "
+                                f"switched channels: from: {before.channel} to: {after.channel}, "
+                                f"In same catogory: {before.channel.category.name}, skipping rights assingment")
+
             LOGGER.debug(f"detected channel change from {before.channel} to {after.channel}")
-            if before.channel:
+            if before.channel and rights_update:
                 LOGGER.debug(f"leaving channel {before.channel} so removing previous channel role")
                 if before.channel.category.id in channel_mapping.keys():
                     channel = get(member.guild.channels, id=channel_mapping[before.channel.category.id])
@@ -47,7 +56,7 @@ class MyClient(discord.Client):
                                 f"left voice channel: {before.channel}, "
                                 f"In unknown catogory: {before.channel.category.name}, cannot remove Rights")
 
-            if after.channel:
+            if after.channel and rights_update:
                 LOGGER.debug(f"joining channel {after.channel} so giving channel role")
                 if after.channel.category.id in channel_mapping.keys():
                     channel = get(member.guild.channels, id=channel_mapping[after.channel.category.id])
