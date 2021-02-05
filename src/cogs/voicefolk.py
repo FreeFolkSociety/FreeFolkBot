@@ -19,9 +19,9 @@ class VoiceFolk(commands.Cog):
     async def on_voice_state_update(self, member, before, after):
         channel_mapping = self.settings['Voice_Cat_to_channel']
         self.logger.debug(f"following data for event happend: \n "
-                     f"User: {member} \n "
-                     f"State Before: {before} \n "
-                     f"State After:{after}")
+                          f"User: {member} \n "
+                          f"State Before: {before} \n "
+                          f"State After:{after}")
 
         # when someone changes channel
         if not before.channel == after.channel:
@@ -31,8 +31,8 @@ class VoiceFolk(commands.Cog):
                 if before.channel.category == after.channel.category:
                     rights_update = False
                     self.logger.info(f"User:{member} "
-                                f"switched channels: from: {before.channel} to: {after.channel}, "
-                                f"In same catogory: {before.channel.category.name}, skipping rights assingment")
+                                     f"switched channels: from: {before.channel} to: {after.channel}, "
+                                     f"In same catogory: {before.channel.category.name}, skipping rights assingment")
 
             self.logger.debug(f"detected channel change from {before.channel} to {after.channel}")
             if before.channel and rights_update:
@@ -40,21 +40,21 @@ class VoiceFolk(commands.Cog):
                 if before.channel.category.id in channel_mapping.keys():
                     channel = get(member.guild.channels, id=channel_mapping[before.channel.category.id])
                     self.logger.info(f"User:{member} "
-                                f"left voice channel: {before.channel}, "
-                                f"In known catogory: {before.channel.category.name}, remove {channel} rights")
+                                     f"left voice channel: {before.channel}, "
+                                     f"In known catogory: {before.channel.category.name}, remove {channel} rights")
                     await channel.set_permissions(member, overwrite=None)
                 else:
                     self.logger.info(f"User:{member} "
-                                f"left voice channel: {before.channel}, "
-                                f"In unknown catogory: {before.channel.category.name}, cannot remove Rights")
+                                     f"left voice channel: {before.channel}, "
+                                     f"In unknown catogory: {before.channel.category.name}, cannot remove Rights")
 
             if after.channel and rights_update:
                 self.logger.debug(f"joining channel {after.channel} so giving channel role")
                 if after.channel.category.id in channel_mapping.keys():
                     channel = get(member.guild.channels, id=channel_mapping[after.channel.category.id])
                     self.logger.info(f"User:{member} "
-                                f"joined voice channel: {after.channel}, "
-                                f"In known catogory: {after.channel.category.name}, giving {channel} rights")
+                                     f"joined voice channel: {after.channel}, "
+                                     f"In known catogory: {after.channel.category.name}, giving {channel} rights")
                     overwrite = discord.PermissionOverwrite()
                     overwrite.send_messages = True
                     overwrite.add_reactions = True
@@ -63,8 +63,8 @@ class VoiceFolk(commands.Cog):
                     await channel.set_permissions(member, overwrite=overwrite)
                 else:
                     self.logger.error(f"User:{member} "
-                                 f"joined voice channel: {after.channel}, "
-                                 f"In unknown catogory: {after.channel.category.name}, cannot give Rights")
+                                      f"joined voice channel: {after.channel}, "
+                                      f"In unknown catogory: {after.channel.category.name}, cannot give Rights")
 
 
 def setup(bot):

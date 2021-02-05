@@ -12,8 +12,6 @@ intents.voice_states = True
 
 bot = commands.Bot(command_prefix='=', intents=intents)
 
-#bot.load_extension("cogs.voicefolk")
-
 for file in os.listdir("./cogs"):
     if file.endswith(".py"):
         bot.load_extension(f"cogs.{file[:-3]}")
