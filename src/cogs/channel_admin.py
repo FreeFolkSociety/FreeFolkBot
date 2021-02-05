@@ -10,7 +10,7 @@ class ChannelAdmin(commands.Cog):
         self.logger = logging.getLogger("FolkBot.ChannelAdmin")
 
     @commands.command()
-    #@commands.is_owner()
+    @commands.is_owner()
     async def checknsfw(self, ctx):
         not_correct_channels = []
         for channel in ctx.guild.text_channels:
@@ -32,8 +32,3 @@ class ChannelAdmin(commands.Cog):
 
 def setup(bot):
     bot.add_cog(ChannelAdmin(bot))
-
-
-
-
-
