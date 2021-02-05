@@ -8,7 +8,7 @@ import logging
 class VoiceFolk(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.logger = logging.getLogger("FolkBot")
+        self.logger = logging.getLogger("FolkBot.VoiceFolk")
         with open("channel_to_role_mapping.yaml", 'r') as stream:
             try:
                 self.settings = yaml.safe_load(stream)
@@ -18,7 +18,6 @@ class VoiceFolk(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
         channel_mapping = self.settings['Voice_Cat_to_channel']
-        self.logger.error("help im in a cog")
         self.logger.debug(f"following data for event happend: \n "
                      f"User: {member} \n "
                      f"State Before: {before} \n "
