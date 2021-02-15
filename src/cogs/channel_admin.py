@@ -29,6 +29,11 @@ class ChannelAdmin(commands.Cog):
                 text_list.append(f"{channel.category} {channel}")
             await ctx.send("\n".join(text_list))
 
+    @commands.Cog.listener(name="on_guild_channel_create")
+    async def make_channel_nsfw(self, channel):
+        if "ticket-" in channel.name:
+            await channel.edit(reason="Ticket created marked as NSFW", nsfw=True)
+
 
 def setup(bot):
     bot.add_cog(ChannelAdmin(bot))
