@@ -14,12 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Check out code
-      
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+        
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
           image: freefolkBot/folkbot
-          tags: ${GITHUB_REF##*/}, $(git rev-parse --short "$GITHUB_SHA"), latest
+          tags: latest, ${{ GITHUB_REF_SLUG }}, ${{ GITHUB_SHA_SHORT }}
           registry: ghcr.io
           dockerfile: Dockerfile
           username: ${{ github.actor }}
