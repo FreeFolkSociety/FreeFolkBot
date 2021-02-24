@@ -21,7 +21,7 @@ jobs:
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
-          image: freefolkBot/folkbot
+          image: freefolksociety/freefolkbot
           tags: latest, ${{ env.GITHUB_REF_SLUG }}, ${{ env.GITHUB_SHA_SHORT }}
           registry: ghcr.io
           dockerfile: Dockerfile
