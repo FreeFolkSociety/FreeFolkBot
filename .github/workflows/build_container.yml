@@ -14,12 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Check out code
-
+      
       - uses: mr-smithers-excellent/docker-build-push@v5
         name: Build & push Docker image
         with:
           image: FreeFolkBot/FolkBot
-          tags: ${GITHUB_REF#refs/heads/}, $(git rev-parse --short "$GITHUB_SHA"), latest
+          tags: ${GITHUB_REF##*/}, $(git rev-parse --short "$GITHUB_SHA"), latest
           registry: ghcr.io
           dockerfile: Dockerfile
           username: ${{ github.actor }}
