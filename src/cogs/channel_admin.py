@@ -59,7 +59,7 @@ class ChannelAdmin(commands.Cog):
         embed.set_author(name="Muted user", icon_url="https://cdn.discordapp.com/emojis/795751312292970516.png?v=1")
         overwrites = {
             ctx.guild.default_role: discord.PermissionOverwrite(view_channel=False,
-                                                               connect=False),
+                                                                connect=False),
             member: discord.PermissionOverwrite(view_channel=True,
                                                 speak=True,
                                                 stream=True,
@@ -79,7 +79,7 @@ class ChannelAdmin(commands.Cog):
                                              overwrites=overwrites,
                                              category=muted_voice_category,
                                              reason=f"{member.name} is muted by {ctx.author}")
-        #send embed to log channel
+        # send embed to log channel
         await member.remove_roles(member_role,  reason=f"user is muted by {ctx.author}")
         await log_channel.send(embed=embed)
 
