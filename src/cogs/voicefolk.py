@@ -68,4 +68,4 @@ class VoiceFolk(commands.Cog):
 
 
 async def setup(bot):
-    await bot.add_cog(VoiceFolk(bot))
+    bot.add_cog(VoiceFolk(bot))
