@@ -13,13 +13,11 @@ intents.voice_states = True
 
 bot = commands.Bot(command_prefix='=', intents=intents)
 
-async def main():
-    async with bot:
-        for file in os.listdir("./cogs"):
-            if file.endswith(".py"):
-                await bot.load_extension(f"cogs.{file[:-3]}")
+for file in os.listdir("./cogs"):
+    if file.endswith(".py"):
+        bot.load_extension(f"cogs.{file[:-3]}")
         # await bot.start(os.environ['BOT_TOKEN'])
-        await bot.run(os.environ['BOT_TOKEN'])
+bot.run(os.environ['BOT_TOKEN'])
 
 
 
