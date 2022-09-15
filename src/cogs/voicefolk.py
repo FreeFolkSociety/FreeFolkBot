@@ -67,5 +67,5 @@ class VoiceFolk(commands.Cog):
                                       f"In unknown catogory: {after.channel.category.name}, cannot give Rights")
 
 
-def setup(bot):
-    bot.add_cog(VoiceFolk(bot))
+async def setup(bot):
+    await bot.add_cog(VoiceFolk(bot))
