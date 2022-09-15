@@ -19,8 +19,8 @@ async def main():
             if file.endswith(".py"):
                 await bot.load_extension(f"cogs.{file[:-3]}")
         await bot.load_extension('my_extension')
-        await bot.start(os.environ['BOT_TOKEN'])
-        #bot.run(os.environ['BOT_TOKEN'])
+        # await bot.start(os.environ['BOT_TOKEN'])
+        await bot.run(os.environ['BOT_TOKEN'])
 
 
 
