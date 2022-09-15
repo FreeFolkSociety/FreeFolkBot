@@ -103,4 +103,4 @@ class ChannelAdmin(commands.Cog):
 
 
 async def setup(bot):
-    bot.add_cog(ChannelAdmin(bot))
+    await bot.add_cog(ChannelAdmin(bot))
