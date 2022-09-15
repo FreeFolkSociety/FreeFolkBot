@@ -1,4 +1,5 @@
 import discord
+from discord import app_commands
 from discord.ext import commands
 from discord.utils import get
 import logging
@@ -18,8 +19,8 @@ class ChannelAdmin(commands.Cog):
             except KeyError as exc:
                 self.logger.exception(exc)
 
-    @commands.command()
-    @commands.is_owner()
+    @app_commands.command(description='check channels for NSFW toggloes')
+    @app_commands.checks.has_permissions(manage_channels=True)
     async def checknsfw(self, ctx):
         not_correct_channels = []
         for channel in ctx.guild.text_channels:
