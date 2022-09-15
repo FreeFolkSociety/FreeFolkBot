@@ -14,6 +14,6 @@ bot = commands.Bot(command_prefix='=', intents=intents)
 
 for file in os.listdir("./cogs"):
     if file.endswith(".py"):
-        bot.load_extension(f"cogs.{file[:-3]}")
+        await bot.load_extension(f"cogs.{file[:-3]}")
 
 bot.run(os.environ['BOT_TOKEN'])
